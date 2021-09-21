@@ -1,7 +1,8 @@
 var scanner = require("readline-sync");
-console.log("Welcome to Ankur's Quiz");
+const chalk = require("chalk");
+console.log(chalk.blue("Welcome to Ankur's Quiz"));
 let playerName = scanner.question("What is your name: ");
-console.log("Welcome " + playerName);
+console.log(chalk.green("Welcome " + playerName));
 let score = 0;
 let highScores = 
 [
@@ -55,28 +56,28 @@ let questionBank = [questionOne, questionTwo, questionThree, questionFour];
 for (let i = 0; i < questionBank.length; i++)
 {
     let questionToAsk = questionBank[i].question;
-    console.log(questionToAsk);
-    console.log(questionBank[i].answer1);
-    console.log(questionBank[i].answer2);
-    console.log(questionBank[i].answer3);
-    console.log(questionBank[i].answer4);
+    console.log(chalk.yellow(questionToAsk));
+    console.log(chalk.magenta(questionBank[i].answer1));
+    console.log(chalk.cyan(questionBank[i].answer2));
+    console.log(chalk.yellow(questionBank[i].answer3));
+    console.log(chalk.cyan(questionBank[i].answer4));
     let answerEnteredByUser = scanner.question("Enter your answer in words: ");
     let answerOfTheQuestion = questionBank[i].answer;
 
     if(checkUserAnswer(answerOfTheQuestion, answerEnteredByUser) == true)
     {
         score++;
-        console.log("Woh Correct Answer");
+        console.log(chalk.green("Woh Correct Answer"));
     }
     else
     {
-        console.log("OOps Incorrect Answer");
+        console.log(chalk.red("OOps Incorrect Answer"));
     }
 }
-console.log("Score is: " + score);
+console.log(chalk.green("Score is: " + score));
 if(score >= highScores[1].score)
 {
-    console.log("Congrats You are a High Scorer: ");
+    console.log(chalk.green("Congrats You are a High Scorer: "));
     highScores[1].name = playerName;
     highScores[1].score = score;
 }
